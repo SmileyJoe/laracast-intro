@@ -16,3 +16,5 @@ Route::get('/', 'StaticPagesController@home');
 Route::get('/contact', 'StaticPagesController@contact');
 
 Route::get('/about', 'StaticPagesController@about');
+
+Route::get('/projects', 'ProjectsController@index');

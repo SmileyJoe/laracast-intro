@@ -16,6 +16,7 @@
                 <li><a href="/?name=cody">Home Cody</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
+                <li><a href="/projects">Projects</a></li>
             </ul>
         </div>
     </body>
