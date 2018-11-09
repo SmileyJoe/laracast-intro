@@ -16,17 +16,13 @@ class ProjectsController extends Controller
         $project = Project::where('id', $id)->first();
 
         if(!$project){
-            $found = false;
-            $project = new Project();
-            $pageTitle = "Not Found";
+            return view('project_empty')
+                ->withPageTitle("Not Found");
         } else {
-            $found = true;
-            $pageTitle = $project->title;
+            return view('project')
+                ->withProject($project);
         }
 
-        return view('project')
-            ->withProject($project)
-            ->withPageTitle($pageTitle)
-            ->withFound($found);
+
     }
 }
