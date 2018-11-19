@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>@yield('page_title')</title>
+
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
     <div style="background: black">
@@ -17,6 +19,7 @@
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="/projects">Projects</a></li>
+                <li><a href="/project/create">Create a project</a></li>
             </ul>
         </div>
     </body>
