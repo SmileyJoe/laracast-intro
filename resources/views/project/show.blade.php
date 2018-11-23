@@ -10,6 +10,6 @@
     </p>
 
     <p>
-        <a href="/project/edit/{{ $project->id }}">Edit</a>
+        <a href="/project/{{ $project->id }}/edit">Edit</a>
     </p>
 @endsection

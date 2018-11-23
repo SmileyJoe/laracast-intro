@@ -12,6 +12,7 @@
         <textarea name="description" placeholder="Enter a description">{{ $project->description }}</textarea>
 
         @if($edit)
+            {{ method_field("put") }}
             <input type="hidden" name="id" value="{{ $project->id }}">
             <button type="submit">Update</button>
         @else

@@ -7,7 +7,7 @@
     </head>
     <body>
     <div style="background: black">
-        <h1  style="color: white">Laracast intro</h1>
+        <a href="/"><h1  style="color: white">Laracast intro</h1></a>
     </div>
 
         @yield('content_main')
@@ -18,7 +18,7 @@
                 <li><a href="/?name=cody">Home Cody</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-                <li><a href="/projects">Projects</a></li>
+                <li><a href="/project">Projects</a></li>
                 <li><a href="/project/create">Create a project</a></li>
             </ul>
         </div>
