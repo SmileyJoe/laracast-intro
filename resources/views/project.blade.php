@@ -8,4 +8,8 @@
     <p>
         {{ $project->description }}
     </p>
+
+    <p>
+        <a href="/project/edit/{{ $project->id }}">Edit</a>
+    </p>
 @endsection

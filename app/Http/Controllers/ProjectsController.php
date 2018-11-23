@@ -27,17 +27,40 @@ class ProjectsController extends Controller
     }
 
     public function create(){
-        return view('project_create');
+        return view('project_create')
+            ->withProject(new Project())
+            ->withEdit(false)
+            ->withFormAction('/project/create');
     }
 
     public function store(){
         $project = new Project();
 
-        $project->title = request('title');
-        $project->description = request('description');
-
-        $project->save();
+        $this->fromRequest($project)->save();
 
         return redirect("/projects");
+    }
+
+    public function edit($id){
+        $project = Project::where('id', $id)->first();
+
+        return view('project_create')
+            ->withProject($project)
+            ->withEdit(true)
+            ->withFormAction('/project/edit/'.$id);
+    }
+
+    public function update($id){
+        $project = Project::where('id', $id)->first();
+
+        $this->fromRequest($project)->update();
+
+        return redirect('/project/'.$id);
+    }
+
+    private function fromRequest($project){
+        $project->title = request('title');
+        $project->description = request('description');
+        return $project;
     }
 }
