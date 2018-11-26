@@ -39,7 +39,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $this->fromRequest(new Project, $request)->save();
+        Project::create(request()->all());
 
         return redirect("/project");
     }
@@ -86,7 +86,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $this->fromRequest($project, $request)->update();
+        $project->update(request()->all());
 
         return redirect('/project/'.$project->id);
     }
@@ -101,19 +101,5 @@ class ProjectController extends Controller
     {
         $project->delete();
         return redirect('/project');
-    }
-
-    /**
-     * The create form is used for creating and editing, so this just passed
-     * the data so we don't have to list the field names more then once/
-     *
-     * @param Project $project the project object to add the form data to
-     * @param Request $request the form data
-     * @return Project the passed in project with the form data added to it
-     */
-    private function fromRequest(Project $project, Request $request){
-        $project->title = $request->title;
-        $project->description = $request->description;
-        return $project;
     }
 }
