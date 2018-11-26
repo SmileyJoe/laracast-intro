@@ -14,10 +14,10 @@
     </p>
 
     <p>
-        <form id="myform" action="{{ url('project/'.$project->id) }}" method="post">
-            {{ csrf_field() }}
-            {{ method_field("delete") }}
-            <a href="#" onclick="document.getElementById('myform').submit();">Delete</a>
+        <form id="delete_form" action="{{ url('project/'.$project->id) }}" method="post">
+            @csrf
+            @method('delete')
+            <a href="#" onclick="document.getElementById('delete_form').submit();">Delete</a>
         </form>
 
     </p>
