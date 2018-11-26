@@ -13,11 +13,18 @@
         <div>
             <h2>Tasks</h2>
 
-            <ul>
-                @foreach($project->tasks as $task)
-                    <li>{{ $task->description }}</li>
-                @endforeach
-            </ul>
+            @foreach($project->tasks as $task)
+                <form method="post" action="/task/{{ $task->id }}">
+                    @csrf
+                    @method('put')
+
+                    <label class="checkbox {{ $task->completed ? 'is_complete' : '' }}" for="completed">
+                        <input type="checkbox" name="completed" onchange="this.form.submit()" {{ $task->completed ? 'checked' : '' }}>
+                        {{ $task->description }}
+                    </label>
+                </form>
+            @endforeach
+
         </div>
     @endif
 

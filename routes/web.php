@@ -18,3 +18,5 @@ Route::get('/contact', 'StaticPagesController@contact');
 Route::get('/about', 'StaticPagesController@about');
 
 Route::resource('/project', 'ProjectController');
+
+Route::resource('/task', 'TaskController');

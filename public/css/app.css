@@ -10487,3 +10487,7 @@ a.text-dark:focus {
   color: red;
 }
 
+.is_complete {
+  text-decoration: line-through;
+}
+
