@@ -10483,3 +10483,7 @@ a.text-dark:focus {
           flex-direction: column;
 }
 
+.error {
+  color: red;
+}
+

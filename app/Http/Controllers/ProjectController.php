@@ -19,32 +19,6 @@ class ProjectController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('project.create')
-            ->withProject(new Project())
-            ->withEdit(false)
-            ->withFormAction('/project');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        Project::create(request()->all());
-
-        return redirect("/project");
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Project  $project
@@ -64,6 +38,21 @@ class ProjectController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        // If there is old data (from a failed validation), we will create a new project object with it //
+        // If there isn't, the object will just be empty and an empty form will display //
+        return view('project.create')
+            ->withProject(new Project(old()))
+            ->withEdit(false)
+            ->withFormAction('/project');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Project  $project
@@ -72,9 +61,22 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         return view('project.create')
-            ->withProject($project)
+            ->withProject($project->fill(old()))
             ->withEdit(true)
             ->withFormAction('/project/'.$project->id);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        Project::create($this->validateData());
+
+        return redirect("/project");
     }
 
     /**
@@ -86,7 +88,7 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $project->update(request()->all());
+        $project->update($this->validateData());
 
         return redirect('/project/'.$project->id);
     }
@@ -101,5 +103,12 @@ class ProjectController extends Controller
     {
         $project->delete();
         return redirect('/project');
+    }
+
+    private function validateData(){
+        return request()->validate([
+            'title' => ['required', 'min:5', 'max:30'],
+            'description' => ['required', 'min:5']
+        ]);
     }
 }
