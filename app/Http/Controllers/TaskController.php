@@ -35,7 +35,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Task::create($this->validateData());
+
+        return back();
     }
 
     /**
@@ -89,7 +91,8 @@ class TaskController extends Controller
 
     private function validateData(){
         return request()->validate([
-            'description' => ['required', 'min:5']
+            'description' => ['required', 'min:5'],
+            'project_id' => 'required'
         ]);
     }
 }
