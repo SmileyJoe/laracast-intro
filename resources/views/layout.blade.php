@@ -10,7 +10,9 @@
         <a href="/"><h1  style="color: white">Laracast intro</h1></a>
     </div>
 
+    <div style="padding-left: 10px">
         @yield('content_main')
+    </div>
 
         <div style="background: black; color: white">
             <ul>
