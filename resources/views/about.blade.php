@@ -4,6 +4,6 @@
 
 @section('content_main')
 
-    <h3>@yield('page_title')</h3>
+    <p>This is the about section.</p>
 
 @endsection

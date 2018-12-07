@@ -4,6 +4,7 @@
 
 @section('content_main')
 
-    <h3>@yield('page_title') {{ $name }}</h3>
-
+    @if($name)
+        <h3>Hi, {{ $name }}</h3>
+    @endif
 @endsection
