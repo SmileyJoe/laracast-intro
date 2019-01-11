@@ -20,3 +20,7 @@ Route::get('/about', 'StaticPagesController@about');
 Route::resource('/project', 'ProjectController');
 
 Route::resource('/task', 'TaskController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
