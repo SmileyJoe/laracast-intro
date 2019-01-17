@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('project.index')
-            ->withProjects(Project::all());
+            ->withProjects(Project::where('owner_id', auth()->id())->get());
     }
 
     /**
@@ -106,9 +112,14 @@ class ProjectController extends Controller
     }
 
     private function validateData(){
-        return request()->validate([
+
+        $data = request()->validate([
             'title' => ['required', 'min:5', 'max:30'],
             'description' => ['required', 'min:5']
         ]);
+
+        $data['owner_id'] = auth()->id();
+
+        return $data;
     }
 }
