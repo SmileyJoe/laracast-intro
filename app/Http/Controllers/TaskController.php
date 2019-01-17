@@ -11,6 +11,7 @@ class TaskController extends Controller
     function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:access,task')->only(['show', 'edit', 'update', 'destroy']);
     }
 
     /**

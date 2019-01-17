@@ -11,6 +11,8 @@ class ProjectController extends Controller
     function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware('can:access,project')->only(['show', 'edit', 'update', 'destroy']);
     }
 
     /**
@@ -32,15 +34,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        // this doesnt work like this anymore with the tomfoolery of populating the project //
-        // a 404 will be dropped if the project isn't found //
-        if(!$project){
-            return view('project.not_found')
-                ->withPageTitle("Not Found");
-        } else {
-            return view('project.show')
-                ->withProject($project);
-        }
+        return view('project.show')
+            ->withProject($project);
     }
 
     /**
