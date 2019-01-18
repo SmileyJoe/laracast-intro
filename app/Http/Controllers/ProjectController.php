@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ProjectCreate;
 use App\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -34,6 +36,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        dump("Viewing project " . $project->title);
         return view('project.show')
             ->withProject($project);
     }
@@ -75,7 +78,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        Project::create($this->validateData());
+        $project = Project::create($this->validateData());
+
+        Mail::to('example@test.com')->send(
+            new ProjectCreate($project)
+        );
 
         return redirect("/project");
     }
