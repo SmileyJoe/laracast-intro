@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProjectCreated;
 use App\Mail\ProjectCreate;
 use App\Project;
 use Illuminate\Http\Request;
@@ -80,9 +81,7 @@ class ProjectController extends Controller
     {
         $project = Project::create($this->validateData());
 
-        Mail::to('example@test.com')->send(
-            new ProjectCreate($project)
-        );
+        event(new ProjectCreated($project));
 
         return redirect("/project");
     }
