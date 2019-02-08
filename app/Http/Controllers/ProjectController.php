@@ -25,7 +25,7 @@ class ProjectController extends Controller
     public function index()
     {
         return view('project.index')
-            ->withProjects(Project::where('owner_id', auth()->id())->get());
+            ->withProjects(auth()->user()->projects);
     }
 
     /**
