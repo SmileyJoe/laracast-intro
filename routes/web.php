@@ -21,6 +21,8 @@ Route::resource('/project', 'ProjectController');
 
 Route::resource('/task', 'TaskController');
 
+Route::resource('/notification', 'NotificationController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\ProjectCreated;
 use App\Mail\ProjectCreate;
+use App\Notifications\ProjectDeleted;
 use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -37,7 +38,6 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        dump("Viewing project " . $project->title);
         return view('project.show')
             ->withProject($project);
     }
@@ -109,6 +109,9 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+
+        $project->owner->notify(new ProjectDeleted($project));
+
         return redirect('/project');
     }
 

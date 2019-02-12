@@ -27,6 +27,7 @@
                     <a href="/contact" class="navbar-item">Contact</a>
                     <a href="/project" class="navbar-item">Projects</a>
                     <a href="/project/create" class="navbar-item">Create a project</a>
+                    <a href="/notification" class="navbar-item">Notifications</a>
 
                     <!-- Authentication Links -->
                     @guest

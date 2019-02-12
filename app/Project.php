@@ -28,4 +28,8 @@ class Project extends Model
     public function tasks(){
         return $this->hasMany(Task::class);
     }
+
+    public function owner(){
+        return $this->belongsTo(User::class);
+    }
 }
